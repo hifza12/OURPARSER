@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}EmailParser{% endblock %}</title>
+</head>
+
+
+<body>
+<form method="POST" action="{{ url_for('check') }}">
+
+
+      <select class="form-control" id="keywords" name="keywords">
+          <option value="Person">Person</option>
+          <option value="Organization">Organization</option>
+          <option value="Location">Location</option>
+          <option value="Other">Other</option>
+      </select>
+      <select class="form-control" id="regex" name="regex">
+          <option value="Price">Price</option>
+          <option value="Url">Url</option>
+          <option value="Date">Date</option>
+          <option value="Email">Email</option>
+      </select>
+
+<textarea class="form-control" id="text" name="text" rows="3"></textarea>
+    <select class="form-control" id="proximity_stop_words"  name="proximity_stop_words">
+        <option value="!">!</option>
+        <option value=",">,</option>
+        <option value="#">#</option>
+        <option value="@">@</option>
+    </select>
+
+    <input type="text" name="limit" placeholder="Enter your limit here" value=""
+                                           maxlength="50" size="50">
+   <select class="form-control" id="exactmatch" name="exactmatch">
+       <option value="True">True</option>
+       <option value="False">False</option>
+   </select>
+
+    <select class="form-control" id="duplicates" name="duplicates">
+        <option value="True">True</option>
+        <option value="False">False</option>
+    </select>
+
+
+    <select class="form-control" id="direction" name="direction">
+        <option value="forward">forward</option>
+        <option value="backward">backward</option>
+        <option value="both">both</option>
+    </select>
+       <input type="submit" value="Submit">
+
+
+
+
+</form>
+</body>
+</html>
