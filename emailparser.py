@@ -400,7 +400,7 @@ def email_extraction(user: str, password: str, msg_from: str, value: str, keywor
                         print('\n'.join(results))
 
     # print the results for all emails
-    for result in results:
-        print(f'Sender: {result[0]}\nSubject: {result[1]}\nBody: {result[2]}\n{result[3]}')
-
+    # for result in results:
+    #     print(f'Sender: {result[0]}\nSubject: {result[1]}\nBody: {result[2]}\n{result[3]}')
+    #
 

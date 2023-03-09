@@ -228,23 +228,23 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Please Fill The below infromation</h6>
                                 </div>
                                 <div class="card-body">
-                                          <form method="POST" action="{{url_for('check')}}">
+                                          <form method="POST" action="{{url_for('check_document')}}">
                                         <nav class="navbar navbar-expand navbar-light bg-light mb-4">
                                         <a class="navbar-brand" href="#" >Keywords</a>
                                         <select class="form-control" id="keywords" name="keywords">
-                                                <option value="option1">Person</option>
-                                                <option value="option2">Organization</option>
-                                                <option value="option3">Location</option>
-                                                  <option value="option4">Other</option>
+                                                <option value="Person">Person</option>
+                                                <option value="Organization">Organization</option>
+                                                <option value="Location">Location</option>
+                                                  <option value="Other">Other</option>
                                               </select>
                                          </nav>
                                         <nav class="navbar navbar-expand navbar-light bg-light mb-4">
                                         <a class="navbar-brand" href="#">Regex</a>
                                         <select class="form-control" id="regex" name="regex">
-                                                <option value="option1">Price</option>
-                                                <option value="option2">Url</option>
-                                                <option value="option3">Date</option>
-                                                  <option value="option4">Email</option>
+                                                <option value="Price">Price</option>
+                                                <option value="Url">Url</option>
+                                                <option value="Date">Date</option>
+                                                  <option value="Email">Email</option>
                                               </select>
                                          </nav>
 
@@ -256,10 +256,10 @@
                                         <nav class="navbar navbar-expand navbar-light bg-light mb-4">
                                         <a class="navbar-brand" href="#">Stopwords</a>
                                         <select class="form-control" id="proximity_stop_words"  name="proximity_stop_words">
-                                                <option value="option1">!</option>
-                                                <option value="option2">,</option>
-                                                <option value="option3">#</option>
-                                                  <option value="option4">@</option>
+                                                <option value="!">!</option>
+                                                <option value=",">,</option>
+                                                <option value="#">#</option>
+                                                  <option value="@">@</option>
                                               </select>
                                          </nav>
                                 </div>
@@ -287,15 +287,15 @@
                                     <nav class="navbar navbar-expand navbar-light bg-light mb-4">
                                         <a class="navbar-brand" href="#">Exact Match</a>
                                         <select class="form-control" id="exactmatch" name="exactmatch">
-                                                <option value="option1">True</option>
-                                                <option value="option2">False</option>
+                                                <option value="True">True</option>
+                                                <option value="False">False</option>
                                               </select>
                                          </nav>
                                         <nav class="navbar navbar-expand navbar-light bg-light mb-4">
                                         <a class="navbar-brand" href="#">Duplicates</a>
                                         <select class="form-control" id="duplicates" name="duplicates">
-                                                 <option value="option1">True</option>
-                                                <option value="option2">False</option>
+                                                 <option value="True">True</option>
+                                                <option value="False">False</option>
                                               </select>
                                          </nav>
 
@@ -303,9 +303,9 @@
                                         <nav class="navbar navbar-expand navbar-light bg-light mb-4">
                                         <a class="navbar-brand" href="#">Direction</a>
                                         <select class="form-control" id="direction" name="direction">
-                                                <option value="option1">Forward</option>
-                                                <option value="option2">Backward</option>
-                                                <option value="option3">Both</option>
+                                                <option value="forward">forward</option>
+                                                <option value="backward">backward</option>
+                                                <option value="both">both</option>
                                               </select>
                                          </nav>
 
@@ -317,11 +317,16 @@
                         </div>
 
                         <div  class ="container">
-                              <input type="submit" value="Submit">
+<!--                            <i class="bi bi-send">Submit</i>-->
+<!--                            <input type="submit" value="Submit">-->
+                              <input type="submit" class="btn btn-facebook btn-user btn-block">
+                                    <i class="bi bi-send">Submit</i>
+<!--                                     <input type="submit" class="" value="Submit">-->
+
 
 
                             </form>
-<!--                                <a href="{{url_for('utlities')}}" class="btn btn-facebook btn-user btn-block">-->
+<!--                              <a href="{{url_for('utlities')}}" class="btn btn-facebook btn-user btn-block">&ndash;&gt;-->
 <!--                                    <i class="bi bi-send">Submit</i>-->
 <!--                                     <input type="submit" class="btn btn-success" value="Submit">-->
 <!--                                </a>-->
@@ -336,18 +341,6 @@
 
                 </div>
 
-<!--    <h1>Search Results</h1>-->
-<!--    {% if extracted_data %}-->
-<!--        <ul>-->
-<!--            {% for result in res %}-->
-<!--                <li>{{ result }}</li>-->
-<!--            {% endfor %}-->
-<!--        </ul>-->
-<!--    {% else %}-->
-<!--        <p>No results found.</p>-->
-<!--    {% endif %}-->
-                <!-- /.container-fluid -->
-
             </div>
 
             <!-- End of Main Content -->
@@ -356,7 +349,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; Your Website 2022</span>
                     </div>
                 </div>
             </footer>
@@ -392,5 +385,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}

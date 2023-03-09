@@ -1,5 +1,6 @@
 from flask import Flask, render_template, json,request, redirect, url_for, session, flash, make_response
 #from flask_mysqldb import MySQL
+from flask import jsonify
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_dance.contrib.google import make_google_blueprint, google
@@ -48,7 +49,7 @@ class LoginForm():
         self.user_password = ''
 
 
-@app.route('/')
+@app.route('/home')
 def home():
     return render_template('index.html')
 
@@ -98,10 +99,6 @@ def login():
         return "login fail"
 
 
-@app.route('/tables')
-def fn():
-    return render_template('buttons.html')
-
 
 
 @app.route('/forgot')
@@ -125,34 +122,33 @@ def text_parser():
     return render_template('documentparser.html')
 
 
-@app.route('/email', methods=['POST'])
-def email_parser():
-    if request.method == "POST":
-        # (user: str, password: str, msg_from: str, value: str, keyword: str, regex: str,
-        #                      proximity_stop_words: str, limit, exact_match: bool, duplicates: bool, direction: str):
-            users=request.form['user']
-            passwords=request.form['password']
-            msg_from=request.form['msg_from']
-            value=request.form['value']
-            keywords = request.form['keyword']
-            regex = request.form['regex']
-            stopwords = request.form['proximity_stop_words']
-            limit = request.form['limit']
-            exactmatch = request.form['exact_match']
-            duplicates = request.form['duplicates']
-            direction = request.form['direction']
-            # data=keywords,regex,stopwords,limit,exactmatch,duplicates,direction
-            extracted_data = ep.email_extraction(users,passwords,msg_from,value,keywords, regex, stopwords, limit, exactmatch, duplicates,
-                                                    direction)
-            #return 'Form submitted successfully'
-    # return render_template('utilities-other.html', res=extracted_data)
-            return extracted_data
+# @app.route('/email', methods=['POST'])
+# def email_parser():
+#     if request.method == "POST":
+#         # (user: str, password: str, msg_from: str, value: str, keyword: str, regex: str,
+#         #                      proximity_stop_words: str, limit, exact_match: bool, duplicates: bool, direction: str):
+#             users=request.form['user']
+#             passwords=request.form['password']
+#             msg_from=request.form['msg_from']
+#             value=request.form['value']
+#             keywords = request.form['keyword']
+#             regex = request.form['regex']
+#             stopwords = request.form['proximity_stop_words']
+#             limit = request.form['limit']
+#             exactmatch = request.form['exact_match']
+#             duplicates = request.form['duplicates']
+#             direction = request.form['direction']
+#             # data=keywords,regex,stopwords,limit,exactmatch,duplicates,direction
+#             extracted_data = ep.email_extraction(users,passwords,msg_from,value,keywords, regex, stopwords, limit, exactmatch, duplicates,
+#                                                     direction)
+#     # return render_template('utilities-other.html', res=extracted_data)
+#             return extracted_data
+#
+#         # return extracted_data
+#        # return render_template('documentparser.html')
+#     return render_template('emailparser.html')
 
-        # return extracted_data
-       # return render_template('documentparser.html')
-    #return render_template('emailparser.html')
-
-@app.route('/tilities')
+@app.route('/utilities')
 def utlities():
     return render_template('utilities-other.html')
 
@@ -176,8 +172,8 @@ def about_email():
 def error():
     return render_template('404.html')
 
-@app.route('/check', methods=['GET','POST'])
-def check():
+@app.route('/check_document', methods=['GET','POST'])
+def check_document():
     if request.method == "POST":
         keywords = request.form['keywords']
         regex = request.form['regex']
@@ -190,7 +186,46 @@ def check():
        # data=keywords,regex,stopwords,limit,exactmatch,duplicates,direction
         extracted_data = tp.document_extraction(keywords, regex,text,stopwords, limit,exactmatch, duplicates, direction)
         return render_template('utilities-other.html', res=extracted_data)
-    return render_template('form.html')
+    return render_template('documentparser.html')
+
+
+
+@app.route('/check_email', methods=['GET','POST'])
+def check_email():
+    if request.method == "POST":
+        # (user: str, password: str, msg_from: str, value: str, keyword: str, regex: str,
+        #                      proximity_stop_words: str, limit, exact_match: bool, duplicates: bool, direction: str):
+        users = request.form['user']
+        passwords = request.form['password']  # wyashvhufbssddga
+        msg_from = request.form['msg_from']
+        value = request.form['value']
+        keywords = request.form['keyword']
+        regex = request.form['regex']
+        stopwords = request.form['proximity_stop_words']
+        limit = request.form['limit']
+        exactmatch = request.form['exact_match']
+        duplicates = request.form['duplicates']
+        direction = request.form['direction']
+        # data=keywords,regex,stopwords,limit,exactmatch,duplicates,direction
+        extracted_data = ep.email_extraction(users, passwords, msg_from, value, keywords, regex, stopwords, limit,
+                                             exactmatch, duplicates,
+                                            direction)
+        # return extracted_data
+        if extracted_data:
+            return render_template('charts.html', result=extracted_data)
+        else:
+            message = "No entities found in the email"
+            return render_template('charts.html', message=message)
+
+        return render_template('emailparser.html')
+
+@app.route('/')
+def charts():
+    return render_template('index2.html')
+
+
+
+
 
 if __name__=="__main__":
     app.run(debug=True,port=4000)

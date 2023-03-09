@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
 {% block body %}
         <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+<div id="content-wrapper" class="d-flex flex-column" xmlns="http://www.w3.org/1999/html"
+     xmlns="http://www.w3.org/1999/html">
 
             <!-- Main Content -->
             <div id="content">
@@ -214,7 +215,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-1 text-gray-800">Document Parser</h1>
+                    <h1 class="h3 mb-1 text-gray-800">Email Parser</h1>
 
                     <!-- Content Row -->
                     <div class="row">
@@ -227,58 +228,54 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Please Fill The below infromation</h6>
                                 </div>
                                 <div class="card-body">
-                                    <form method="POST" action="{{ url_for('email_parser') }}">
-
-                                         <nav class="navbar navbar-expand navbar-light bg-light mb-4">
-                                        <a class="navbar-brand" href="#">User Name</a>
-                                    <input type="text" name="text-input"
-                                           placeholder="Enter your Name Here" value=""
-                                           maxlength="50" size="45">
+                                          <form method="POST" action="{{url_for('check_email')}}">
+                                              <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                                                  <a class="navbar-brand" href="#">User</a>
+                                                  <input type="text" name="user" placeholder="Enter your Name here" value=""
+                                           maxlength="50" size="50">
                                          </nav>
-
-                                           <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                                                <nav class="navbar navbar-expand navbar-light bg-light mb-4">
                                         <a class="navbar-brand" href="#">Password</a>
-                                    <input type="password" name="password"
-                                           placeholder="Enter your Password Here" value=""
-                                           maxlength="50" size="45">
+                                    <input type="password" name="password" placeholder="Enter your Password here" value=""
+                                           maxlength="45" size="45">
                                          </nav>
 
-
-                                        <nav class="navbar navbar-expand navbar-light bg-light mb-4">
-                                        <a class="navbar-brand" href="#">Keywords</a>
-                                        <select class="form-control" id="keywords">
-                                                <option value="option1">Location</option>
-                                                <option value="option2">Organization</option>
-                                                <option value="option3">Person</option>
-                                                  <option value="option3">Misc</option>
+                                                <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                                        <a class="navbar-brand" href="#" >Msgs From</a>
+                                        <select class="form-control" id="msgfrom" name="msg_from">
+                                                <option value="Inbox">Inbox</option>
+                                                <option value="Sent">Sent</option>
+                                                <option value="Trash">Trash</option>
+                                                  <option value="Spam">Spam</option>
                                               </select>
                                          </nav>
+
+                                             <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                                        <a class="navbar-brand" href="#">Value</a>
+                                    <input type="text" name="value" placeholder="Enter your Value here" value=""
+                                           maxlength="50" size="48">
+                                         </nav>
                                         <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                                        <a class="navbar-brand" href="#" >Keywords</a>
+                                        <select class="form-control" id="keyword" name="keyword">
+                                                <option value="Person">Person</option>
+                                                <option value="Organization">Organization</option>
+                                                <option value="Location">Location</option>
+                                                  <option value="Other">Other</option>
+                                              </select>
+                                         </nav>
+                                              <!--                                    <div class="small mb-1">Navbar Dropdown Example:</div>-->
+                                     <nav class="navbar navbar-expand navbar-light bg-light mb-4">
                                         <a class="navbar-brand" href="#">Regex</a>
-                                        <select class="form-control" id="regex">
-                                                <option value="option1">Price</option>
-                                                <option value="option2">Url</option>
-                                                <option value="option3">Date</option>
-                                                  <option value="option3">Email</option>
+                                        <select class="form-control" id="regex" name="regex">
+                                                <option value="Price">Price</option>
+                                                <option value="Url">Url</option>
+                                                <option value="Date">Date</option>
+                                                  <option value="Email">Email</option>
                                               </select>
                                          </nav>
 
-                                        <nav class="navbar navbar-expand navbar-light bg-light mb-4">
-                                        <a class="navbar-brand" href="#">Text</a>
-                                           <textarea class="form-control" id="text" name="text" rows="3"></textarea>
-                                         </nav>
-
-                                        <nav class="navbar navbar-expand navbar-light bg-light mb-4">
-                                        <a class="navbar-brand" href="#">Stopwords</a>
-                                        <select class="form-control" id="proximity_stop_words">
-                                                <option value="option1">!</option>
-                                                <option value="option2">,</option>
-                                                <option value="option3">#</option>
-                                                  <option value="option3">@</option>
-                                              </select>
-                                         </nav>
-                                </div>
-                                </form>
+                                                                 </div>
                             </div>
 
                         </div>
@@ -294,57 +291,48 @@
 <!--                                    <div class="mb-3">-->
 <!--                                        <code>.animated--grow-in</code>-->
 <!--                                    </div>-->
-<!--                                    <div class="small mb-1">Navbar Dropdown Example:</div>-->
+
+                                        <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                                        <a class="navbar-brand" href="#">Stopwords</a>
+                                        <select class="form-control" id="proximity_stop_words"  name="proximity_stop_words">
+                                                <option value="!">!</option>
+                                                <option value=",">,</option>
+                                                <option value="#">#</option>
+                                                  <option value="@">@</option>
+                                              </select>
+                                         </nav>
+
                                     <nav class="navbar navbar-expand navbar-light bg-light mb-4">
                                         <a class="navbar-brand" href="#">Limit</a>
-                                    <input type="text" name="text-input"
-                                           placeholder="Enter your limit here" value=""
+                                    <input type="text" name="limit" placeholder="Enter your limit here" value=""
                                            maxlength="50" size="50">
                                          </nav>
-
-                                        <nav class="navbar navbar-expand navbar-light bg-light mb-4">
+                                    <nav class="navbar navbar-expand navbar-light bg-light mb-4">
                                         <a class="navbar-brand" href="#">Exact Match</a>
-                                        <select class="form-control" id="exactmatch">
-                                                <option value="option1">True</option>
-                                                <option value="option2">False</option>
+                                        <select class="form-control" id="exact_match" name="exact_match">
+                                                <option value="True">True</option>
+                                                <option value="False">False</option>
                                               </select>
                                          </nav>
-
-
                                         <nav class="navbar navbar-expand navbar-light bg-light mb-4">
                                         <a class="navbar-brand" href="#">Duplicates</a>
-                                        <select class="form-control" id="duplicates">
-                                                 <option value="option1">True</option>
-                                                <option value="option2">False</option>
+                                        <select class="form-control" id="duplicates" name="duplicates">
+                                                 <option value="True">True</option>
+                                                <option value="False">False</option>
                                               </select>
                                          </nav>
 
 
                                         <nav class="navbar navbar-expand navbar-light bg-light mb-4">
                                         <a class="navbar-brand" href="#">Direction</a>
-                                        <select class="form-control" id="direction">
-                                                <option value="option1">Forward</option>
-                                                <option value="option2">Backward</option>
-                                                <option value="option3">Both</option>
+                                        <select class="form-control" id="direction" name="direction">
+                                                <option value="forward">forward</option>
+                                                <option value="backward">backward</option>
+                                                <option value="both">both</option>
                                               </select>
                                          </nav>
-                                     <nav class="navbar navbar-expand navbar-light bg-light mb-4">
-                                        <a class="navbar-brand" href="#">Direction</a>
-                                        <select class="form-control" id="direction">
-                                                <option value="option1">Forward</option>
-                                                <option value="option2">Backward</option>
-                                                <option value="option3">Both</option>
-                                              </select>
-                                         </nav>
+                                    <br>
 
-                                     <nav class="navbar navbar-expand navbar-light bg-light mb-4">
-                                        <a class="navbar-brand" href="#">Direction</a>
-                                        <select class="form-control" id="direction">
-                                                <option value="option1">Forward</option>
-                                                <option value="option2">Backward</option>
-                                                <option value="option3">Both</option>
-                                              </select>
-                                         </nav>
 
                                     <br>
                                     <br>
@@ -353,13 +341,14 @@
                             <br>
                         </div>
 
-
                         <div  class ="container">
+                              <input type="submit" value="Submit">
 
-                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                    <i class="bi bi-send">Submit</i>
-                                </a>
-
+                            </form>
+<!--                                <a href="{{url_for('utlities')}}" class="btn btn-facebook btn-user btn-block">-->
+<!--                                    <i class="bi bi-send">Submit</i>-->
+<!--                                     <input type="submit" class="btn btn-success" value="Submit">-->
+<!--                                </a>-->
                                     </div>
 
                                 </div>
@@ -370,9 +359,9 @@
                     </div>
 
                 </div>
-                <!-- /.container-fluid -->
 
             </div>
+
             <!-- End of Main Content -->
 
             <!-- Footer -->
@@ -415,5 +404,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
